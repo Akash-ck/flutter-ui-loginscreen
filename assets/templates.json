@@ -12,12 +12,12 @@
         },
 
         {
-            "image":"assets/image1.jpeg",
+            "image":"assets/download.jpg",
             "name":"Start from Scratch",
             "description":"Create a video from scratch to tell your story"
         },
         {
-            "image":"assets/jp.jpg",
+            "image":"assets/img.png",
             "name":"Product Launch",
             "description":"Introduce a product or service with a video"
         },

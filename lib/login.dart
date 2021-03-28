@@ -1,11 +1,10 @@
 import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import 'template.dart';
-import 'package:log/profile.dart';
+import 'authservice.dart';
+
+import 'templatePage.dart';
+import 'gridview.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -18,8 +17,6 @@ class _LoginState extends State<Login> {
   TextEditingController namecontroller = new TextEditingController();
   TextEditingController passwordcontroller = new TextEditingController();
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,17 +24,14 @@ class _LoginState extends State<Login> {
             child: Center(
       child: Container(
         width: 300,
-        height: 300,
+        height: 400,
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Container(
-            width: 250,
+            width: 200,
             height: 50,
             child: TextFormField(
               controller: namecontroller,
-              style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15),
+              style: TextStyle(color: Colors.white, fontSize: 15),
               validator: (value) {
                 if (value.isEmpty) {
                   return "Username Empty";
@@ -54,7 +48,7 @@ class _LoginState extends State<Login> {
           ),
           Divider(),
           SizedBox(
-            height: 20,
+            height: 30,
           ),
           Container(
             width: 250,
@@ -81,8 +75,8 @@ class _LoginState extends State<Login> {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => MyHomePage()));
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => HomePage()));
             },
             child: Container(
               height: 50,
@@ -110,11 +104,10 @@ class _LoginState extends State<Login> {
                 height: 50,
                 color: Colors.lightBlueAccent,
                 onPressed: () => googleSignin().whenComplete(() async {
-
                   var user = await FirebaseAuth.instance.currentUser;
 
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => MyHomePage()));
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => HomePage()));
                 }),
                 icon: Icon(Icons.mediation),
                 label: Text(
